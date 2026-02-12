@@ -9,6 +9,9 @@ Leboncoin dement et qualifie ces affirmations d'infondees.
 Au lieu de traiter le signalement sur le fond, ils ont prefere balayer ces alertes.
 Voici les preuves concretes que c'est possible, avec des donnees extraites, des scripts et des visualisations reproductibles.
 
+D'autant plus: entre mes premiers essais et mes essais apres le tweet, ils ont bien renforce la securite de leur app.
+Donc dementir publiquement tout en prenant le point en interne, c'est ethically questionable.
+
 - Tweet de signalement public: [DFintelligence sur X](https://x.com/DFintelligence/status/2021459351248982444?s=20)
 - Article mentionnant le dementi: [Numerama](https://www.numerama.com/cyberguerre/2177379-leboncoin-vient-il-de-ruiner-des-annees-defforts-avec-son-appli-chatgpt-on-leur-a-pose-la-question.html)
 
@@ -21,6 +24,12 @@ Capture de mon tweet:
 Capture du dementi:
 
 ![Capture dementi Leboncoin](leboncoin-dement.png)
+
+Captures des mesures / garde-fous observes apres:
+
+![Capture mesure 1](mesure1.png)
+
+![Capture mesure 2](mesure2.png)
 
 PS: la prochaine fois, moins de deni et plus de remise en question.
 
