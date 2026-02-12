@@ -3,6 +3,14 @@
 Dossier data: `appartement-paris/`  
 Ce dossier est pret pour accumuler plusieurs extractions CSV dans le temps.
 
+## Perimetre volontairement limite
+
+Pour garder un objectif informationnel et eviter un dump massif:
+
+- j'ai volontairement limite l'extraction immobilier aux annonces **<= 225 000 EUR**,
+- le script d'analyse conserve ce cadre (cap par defaut a 225k),
+- le but est de prouver un point technique sans chercher a nuire a la plateforme.
+
 ## 0) Setup
 
 ```bash
@@ -15,6 +23,7 @@ Depuis la racine du repo:
 
 ```bash
 python3 appartement-paris/analyze_paris_apartments.py \
+  --max-price 225000 \
   --output-dir appartement-paris/outputs
 ```
 
@@ -25,28 +34,29 @@ les concatene et deduplique par `id` (on garde la version la plus recente de l'a
 
 Sur les fichiers presents actuellement:
 
-- Lignes brutes concatenees: `1131`
-- Annonces uniques apres deduplication: `783`
+- Lignes brutes concatenees: `1904`
+- Annonces uniques apres deduplication: `1407`
 - Arrondissements couverts: `21`
-- Prix median: `137 480 EUR`
-- Quartiles prix (Q1 / Q3): `105 000 EUR` / `160 000 EUR`
-- Surface mediane: `12 m2`
-- Prix median au m2: `10 187.5 EUR/m2`
-- Correlation prix/surface: `0.613`
+- Prix median: `170 000 EUR`
+- Quartiles prix (Q1 / Q3): `130 000 EUR` / `205 000 EUR`
+- Surface mediane: `17 m2`
+- Prix median au m2: `10 045.45 EUR/m2`
+- Correlation prix/surface: `0.760`
 
 Lecture rapide:
 
-- Marche majoritairement professionnel (`pro` ~77.7% des annonces).
+- Marche majoritairement professionnel (`pro` ~78.4% des annonces).
 - Forte dispersion de prix selon la surface et l'arrondissement.
 - Le prix au m2 varie sensiblement entre arrondissements.
-- Les arrondissements les plus representes sont `75018`, `75019` et `75017`.
+- Les arrondissements les plus representes sont `75018`, `75019` et `75011`.
+- Le DPE le plus frequent reste `E`.
 
 Lecture textuelle complementaire:
 
-- Le **prix median a 137 480 EUR** est proche de la moyenne (`130 789 EUR`), ce qui indique une distribution de prix moins tiree par quelques ultra-outliers.
-- 50% des annonces se situent entre **105k EUR** et **160k EUR** dans ce snapshot.
-- La **surface mediane a 12 m2** montre un stock fortement oriente vers de tres petites surfaces dans l'extraction actuelle.
-- La correlation **prix/surface de 0.613** confirme un lien positif net, mais l'effet arrondissement/etat reste important.
+- Le **prix median a 170 000 EUR** est proche de la moyenne (`164 383 EUR`), ce qui indique une distribution assez compacte dans ce perimetre de prix.
+- 50% des annonces se situent entre **130k EUR** et **205k EUR** dans ce snapshot.
+- La **surface mediane a 17 m2** confirme une forte presence de petites surfaces dans l'extraction actuelle.
+- La correlation **prix/surface de 0.760** confirme un lien positif important entre surface et prix.
 
 ## 3) Annonces par arrondissement
 

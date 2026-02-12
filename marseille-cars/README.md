@@ -4,6 +4,14 @@ Dataset: `marseille-cars/marseille-cars.csv`
 
 Ce README est structure comme un mini notebook d'analyse.
 
+## Perimetre volontairement limite
+
+Pour rester dans une logique strictement informationnelle:
+
+- je n'ai conserve qu'environ **la moitie des annonces voitures**,
+- je n'ai pas cherche a produire un dump complet,
+- l'objectif est de documenter un point technique, pas d'impacter l'activite de la plateforme.
+
 ## 0) Setup
 
 ```bash

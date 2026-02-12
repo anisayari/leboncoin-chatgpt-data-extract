@@ -32,6 +32,12 @@ def parse_args() -> argparse.Namespace:
         default=2,
         help="Seuil mini d'annonces pour les comparaisons par arrondissement",
     )
+    parser.add_argument(
+        "--max-price",
+        type=float,
+        default=225000.0,
+        help="Prix max conserve dans l'analyse (EUR).",
+    )
     return parser.parse_args()
 
 
@@ -112,6 +118,7 @@ def main() -> None:
     base_dir = Path(__file__).resolve().parent
     output_dir = args.output_dir
     df, csv_files = load_data(base_dir, args.input_glob)
+    df = df[df["prix"] <= args.max_price].copy()
 
     print("CSV charges:")
     for csv_path in csv_files:
@@ -119,7 +126,8 @@ def main() -> None:
     print(
         "Lignes uniques (id dedupe): "
         f"{len(df)} | Arrondissements: {df['arrondissement'].nunique()} | "
-        f"Prix median: {df['prix'].median():.0f} EUR | Surface mediane: {df['surface_m2'].median():.0f} m2"
+        f"Prix median: {df['prix'].median():.0f} EUR | Surface mediane: {df['surface_m2'].median():.0f} m2 | "
+        f"Cap prix: <= {args.max_price:.0f} EUR"
     )
 
     by_arr_count = (
@@ -260,4 +268,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -7,6 +7,14 @@
 
 Ce repository contient des jeux de donnees extraits depuis l'app ChatGPT de Leboncoin, ainsi que des analyses reproductibles (Python + Plotly).
 
+## Perimetre volontairement limite (ethique)
+
+Pour rester strictement sur un objectif informationnel et eviter de causer un dommage operationnel a Leboncoin:
+
+- immobilier: extraction limitee aux annonces jusqu'a **225 000 EUR**,
+- voitures: extraction limitee a **environ la moitie des annonces** (pas de dump complet),
+- publication de donnees/analyses a but demonstratif uniquement.
+
 ## Contexte
 
 J'ai voulu avertir que ce type d'application pouvait porter des risques pour la securite des donnees.
@@ -64,11 +72,11 @@ Chaque dossier d'analyse contient:
 ## Indicateurs cles actuels (prix medians)
 
 - Marseille Cars: **18 390 EUR** (2300 annonces nettoyees)
-- Appartement Paris: **137 480 EUR** (783 annonces uniques apres deduplication)
+- Appartement Paris: **170 000 EUR** (1407 annonces uniques apres deduplication, capees a 225k EUR)
 
 Lecture textuelle rapide:
 - Cote auto, le prix median est bien en-dessous de la moyenne, ce qui indique l'effet des annonces haut de gamme sur la moyenne.
-- Cote immobilier, le snapshot actuel est davantage concentre sur des petites surfaces, avec des prix majoritairement entre 105k et 160k EUR.
+- Cote immobilier, le snapshot actuel est concentre sur des biens plus accessibles (plafond 225k), avec des prix majoritairement entre 130k et 205k EUR.
 - Ces medianes sont de bons points d'ancrage pour suivre l'evolution du marche a chaque nouveau batch CSV.
 
 ### Marseille Cars
@@ -101,6 +109,7 @@ python3 marseille-cars/analyze_marseille_cars.py \
   --output-dir marseille-cars/outputs
 
 python3 appartement-paris/analyze_paris_apartments.py \
+  --max-price 225000 \
   --output-dir appartement-paris/outputs
 ```
 
