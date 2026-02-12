@@ -7,7 +7,7 @@ Ce dossier est pret pour accumuler plusieurs extractions CSV dans le temps.
 
 Pour garder un objectif informationnel et eviter un dump massif:
 
-- j'ai volontairement limite l'extraction immobilier aux annonces **<= 225 000 EUR**,
+- j'ai volontairement limite l'extraction des **appartements a Paris** aux annonces **<= 225 000 EUR**,
 - le script d'analyse conserve ce cadre (cap par defaut a 225k),
 - le but est de prouver un point technique sans chercher a nuire a la plateforme.
 

@@ -11,8 +11,8 @@ Ce repository contient des jeux de donnees extraits depuis l'app ChatGPT de Lebo
 
 Pour rester strictement sur un objectif informationnel et eviter de causer un dommage operationnel a Leboncoin:
 
-- immobilier: extraction limitee aux annonces jusqu'a **225 000 EUR**,
-- voitures: extraction limitee a **environ la moitie des annonces** (pas de dump complet),
+- immobilier (appartements a Paris): extraction limitee aux annonces jusqu'a **225 000 EUR**,
+- voitures (uniquement a Marseille): extraction limitee a **environ la moitie des annonces** (pas de dump complet),
 - publication de donnees/analyses a but demonstratif uniquement.
 
 ## Contexte
@@ -24,6 +24,13 @@ Voici les preuves concretes que c'est possible, avec des donnees extraites, des 
 
 D'autant plus: entre mes premiers essais et mes essais apres le tweet, ils ont bien renforce la securite de leur app.
 Donc dementir publiquement tout en prenant le point en interne, c'est ethically questionable.
+
+## Probleme de fond
+
+Le probleme, c'est que les IA requierent de nouvelles interfaces pour communiquer avec les sites.
+Leboncoin travaille depuis des annees a limiter le scraping de masse sur son site web classique.
+Mais cette nouvelle interface liee a l'IA peut recreer un canal d'extraction structuree qui contourne, en pratique, une partie de ces efforts.
+Ce repo documente ce point de maniere factuelle.
 
 - Tweet de signalement public: [DFintelligence sur X](https://x.com/DFintelligence/status/2021459351248982444?s=20)
 - Article mentionnant le dementi: [Numerama](https://www.numerama.com/cyberguerre/2177379-leboncoin-vient-il-de-ruiner-des-annees-defforts-avec-son-appli-chatgpt-on-leur-a-pose-la-question.html)
