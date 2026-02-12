@@ -30,14 +30,22 @@ df = df[(df["prix_eur"] > 0) & (df["km"] >= 0)]
 - Modeles: `617`
 - Prix moyen: `21 879 EUR`
 - Prix median: `18 390 EUR`
+- Quartiles prix (Q1 / Q3): `13 397.5 EUR` / `24 415 EUR`
 - Km moyen: `70 283`
 - Km median: `57 056`
+- Annee mediane: `2021`
 - Correlation prix/km: `-0.345`
 
 Lecture rapide:
 - Marche fortement concentre sur des marques generalistes.
 - Presence d'un segment premium visible dans le haut de distribution.
 - Relation negative nette entre prix et kilometrage.
+
+Lecture textuelle complementaire:
+- Le **prix median a 18 390 EUR** est plus robuste que la moyenne (`21 879 EUR`) car la moyenne est tiree vers le haut par les annonces premium/luxe.
+- 50% des annonces se situent entre **13.4k EUR** et **24.4k EUR**, ce qui donne une zone de marche "coeur" assez lisible.
+- Le kilometrage median a **57 056 km** et l'annee mediane **2021** indiquent un stock majoritairement recent.
+- En volume, Peugeot, Renault, Citroen et Volkswagen dominent, ce qui structure fortement la dynamique de prix locale.
 
 ## 3) Marques les plus representees
 

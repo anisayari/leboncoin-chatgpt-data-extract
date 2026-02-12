@@ -36,8 +36,6 @@ Captures des mesures / garde-fous observes apres:
 
 ![Capture mesure 1](mesure1.png)
 
-![Capture mesure 2](mesure2.png)
-
 PS: la prochaine fois, moins de deni et plus de remise en question.
 
 ## Organisation du repo
@@ -62,6 +60,16 @@ Chaque dossier d'analyse contient:
 4. Ecrire les sorties dans `outputs/`.
 
 ## Exemples de visualisations par analyse
+
+## Indicateurs cles actuels (prix medians)
+
+- Marseille Cars: **18 390 EUR** (2300 annonces nettoyees)
+- Appartement Paris: **137 480 EUR** (783 annonces uniques apres deduplication)
+
+Lecture textuelle rapide:
+- Cote auto, le prix median est bien en-dessous de la moyenne, ce qui indique l'effet des annonces haut de gamme sur la moyenne.
+- Cote immobilier, le snapshot actuel est davantage concentre sur des petites surfaces, avec des prix majoritairement entre 105k et 160k EUR.
+- Ces medianes sont de bons points d'ancrage pour suivre l'evolution du marche a chaque nouveau batch CSV.
 
 ### Marseille Cars
 
@@ -95,3 +103,9 @@ python3 marseille-cars/analyze_marseille_cars.py \
 python3 appartement-paris/analyze_paris_apartments.py \
   --output-dir appartement-paris/outputs
 ```
+
+## Comment j'ai fais ?
+
+Si Leboncoin veulent savoir comment je m'y suis pris et ce qu'ils peuvent faire pour empecher ca, je peux leur envoyer une facture "fondee", derien.
+
+![Derien meme](derien.jpg)

@@ -25,18 +25,28 @@ les concatene et deduplique par `id` (on garde la version la plus recente de l'a
 
 Sur les fichiers presents actuellement:
 
-- Lignes brutes concatenees: `304`
-- Annonces uniques apres deduplication: `75`
-- Arrondissements couverts: `17`
-- Prix median: `459 000 EUR`
-- Surface mediane: `43 m2`
-- Prix median au m2: `10 150 EUR/m2`
+- Lignes brutes concatenees: `1131`
+- Annonces uniques apres deduplication: `783`
+- Arrondissements couverts: `21`
+- Prix median: `137 480 EUR`
+- Quartiles prix (Q1 / Q3): `105 000 EUR` / `160 000 EUR`
+- Surface mediane: `12 m2`
+- Prix median au m2: `10 187.5 EUR/m2`
+- Correlation prix/surface: `0.613`
 
 Lecture rapide:
 
-- Marche majoritairement professionnel (`pro` tres dominant).
+- Marche majoritairement professionnel (`pro` ~77.7% des annonces).
 - Forte dispersion de prix selon la surface et l'arrondissement.
 - Le prix au m2 varie sensiblement entre arrondissements.
+- Les arrondissements les plus representes sont `75018`, `75019` et `75017`.
+
+Lecture textuelle complementaire:
+
+- Le **prix median a 137 480 EUR** est proche de la moyenne (`130 789 EUR`), ce qui indique une distribution de prix moins tiree par quelques ultra-outliers.
+- 50% des annonces se situent entre **105k EUR** et **160k EUR** dans ce snapshot.
+- La **surface mediane a 12 m2** montre un stock fortement oriente vers de tres petites surfaces dans l'extraction actuelle.
+- La correlation **prix/surface de 0.613** confirme un lien positif net, mais l'effet arrondissement/etat reste important.
 
 ## 3) Annonces par arrondissement
 
