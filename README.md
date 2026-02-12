@@ -3,7 +3,7 @@
 > WARNING
 > Ce repository existe uniquement parce que Leboncoin dement qu'il est possible d'utiliser son app ChatGPT pour extraire des donnees structurees de son site.
 > Ce contenu est publie a but strictement informationnel.
-> Parce que mentir, ce n'est pas acceptable.
+> Parce que dire que ce ne serait pas possible, alors que cela semblerait possible, ce ne serait pas tres fair-play.
 
 Ce repository contient des jeux de donnees extraits depuis l'app ChatGPT de Leboncoin, ainsi que des analyses reproductibles (Python + Plotly).
 
@@ -29,6 +29,8 @@ Capture de mon tweet:
 Capture du dementi:
 
 ![Capture dementi Leboncoin](leboncoin-dement.png)
+
+![Really meme](whatever-really.gif)
 
 Captures des mesures / garde-fous observes apres:
 
