@@ -12,11 +12,11 @@ import plotly.express as px
 
 def parse_args() -> argparse.Namespace:
     base_dir = Path(__file__).resolve().parent
-    default_input = base_dir.parent / "marseille-cars.csv"
+    default_input = base_dir / "marseille-cars.csv"
     default_output = base_dir / "outputs"
 
     parser = argparse.ArgumentParser(
-        description="Genere des visualisations Plotly pour marseille-cars.csv."
+        description="Genere des visualisations Plotly pour le CSV d'analyse."
     )
     parser.add_argument("--input", type=Path, default=default_input, help="CSV d'entree")
     parser.add_argument(
@@ -223,4 +223,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

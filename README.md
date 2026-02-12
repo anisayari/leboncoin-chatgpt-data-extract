@@ -4,12 +4,25 @@ Ce repository contient des jeux de donnees extraits depuis l'app ChatGPT de Lebo
 
 ## Contexte
 
-L'objectif est de documenter techniquement la possibilite d'extraction de donnees a grande echelle.
+J'ai voulu avertir que ce type d'application pouvait porter des risques pour la securite des donnees.
+Leboncoin dement et qualifie ces affirmations d'infondees.
+Au lieu de traiter le signalement sur le fond, ils ont prefere balayer ces alertes.
+Voici les preuves concretes que c'est possible, avec des donnees extraites, des scripts et des visualisations reproductibles.
 
 - Tweet de signalement public: [DFintelligence sur X](https://x.com/DFintelligence/status/2021459351248982444?s=20)
-- Article mentionnant la position de Leboncoin: [Numerama](https://www.numerama.com/cyberguerre/2177379-leboncoin-vient-il-de-ruiner-des-annees-defforts-avec-son-appli-chatgpt-on-leur-a-pose-la-question.html)
+- Article mentionnant le dementi: [Numerama](https://www.numerama.com/cyberguerre/2177379-leboncoin-vient-il-de-ruiner-des-annees-defforts-avec-son-appli-chatgpt-on-leur-a-pose-la-question.html)
 
-Ce repo est publie pour apporter des elements concrets et verifiables (datasets + scripts + visualisations), dans l'espoir d'encourager une meilleure prise en compte des retours techniques. L'idee est simple: eviter la posture de l'autruche et traiter les signalements techniques de maniere directe.
+### Captures
+
+Capture de mon tweet:
+
+![Capture tweet DFintelligence](tweet-dfintelligence.png)
+
+Capture du dementi:
+
+![Capture dementi Leboncoin](leboncoin-dement.png)
+
+PS: la prochaine fois, moins de deni et plus de remise en question.
 
 ## Organisation du repo
 
@@ -20,8 +33,9 @@ Regle: **1 dossier = 1 analyse**.
 Chaque dossier d'analyse contient:
 
 1. Un script Python d'analyse.
-2. Un `README.md` metier (methodo + lecture des resultats).
-3. Un dossier `outputs/` avec les visualisations (`.html` et `.png`).
+2. Le(s) CSV dans le dossier de l'analyse.
+3. Un `README.md` metier (methodo + lecture des resultats).
+4. Un dossier `outputs/` avec les visualisations (`.html` et `.png`).
 
 ## Ajouter une nouvelle analyse (ex: immobilier)
 
@@ -35,6 +49,6 @@ Chaque dossier d'analyse contient:
 ```bash
 python3 -m pip install -r requirements.txt
 python3 marseille-cars/analyze_marseille_cars.py \
-  --input marseille-cars.csv \
+  --input marseille-cars/marseille-cars.csv \
   --output-dir marseille-cars/outputs
 ```

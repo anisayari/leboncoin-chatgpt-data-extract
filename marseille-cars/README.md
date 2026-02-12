@@ -1,121 +1,134 @@
-# Analyse Data: Marche auto Marseille
+# Notebook Analyse: Marseille Cars
 
-Source: `marseille-cars.csv`
+Dataset: `marseille-cars/marseille-cars.csv`
 
-## Resume executif
+Ce README est structure comme un mini notebook d'analyse.
 
-Cette extraction contient `2300` annonces, `40` marques et `617` modeles.
-Le marche est fortement concentre sur quelques marques generalistes (Peugeot, Renault, Citroen, Volkswagen), avec une dispersion de prix importante selon la marque, le modele, l'annee et le kilometrage.
-
-## Methodologie
-
-Le script:
-
-1. Charge le CSV.
-2. Convertit `annee`, `km`, `prix_eur` en numerique.
-3. Filtre les lignes invalides (`prix_eur <= 0`, `km < 0`, valeurs manquantes).
-4. Genere des visualisations Plotly en `.html` (interactif) et `.png` (image).
-
-## Chiffres cles (dataset actuel)
-
-- Volume: `2300` annonces
-- Marques uniques: `40`
-- Modeles uniques: `617`
-- Prix moyen: `21 879 EUR`
-- Prix median: `18 390 EUR`
-- Quartiles prix (Q1 / Q3): `13 397.5 EUR` / `24 415 EUR`
-- Kilometrage moyen: `70 283 km`
-- Kilometrage median: `57 056 km`
-- Quartiles km (Q1 / Q3): `27 941.5 km` / `92 000 km`
-- Annee mediane: `2021`
-- Correlation prix vs km: `-0.345` (relation negative moderee)
-
-## Lecture business des resultats
-
-### 1) Marques les plus representees
-
-Top volume annonces:
-- Peugeot: `455`
-- Renault: `390`
-- Citroen: `236`
-- Volkswagen: `230`
-- BMW / Audi / Toyota / Mercedes suivent ensuite.
-
-Interpretation: l'offre locale est dominee par des marques generalistes francaises et allemandes.
-
-### 2) Modeles les plus representes
-
-Top modeles:
-- 208 (`88`)
-- Clio (`79`)
-- C3 (`74`)
-- Captur (`68`)
-- 2008 (`65`)
-
-Interpretation: predominance des citadines et SUV compacts, adaptes a un usage urbain/periurbain.
-
-### 3) Marques les plus cheres (prix moyen, min 10 annonces)
-
-Top prix moyen:
-- Porsche: `~105k EUR`
-- Land Rover: `~62k EUR`
-- Volvo: `~51k EUR`
-- Cupra: `~41k EUR`
-- Mercedes: `~33k EUR`
-
-Interpretation: un segment premium/luxe existe mais reste minoritaire en volume.
-
-### 4) Variance de prix par modele
-
-La variance est elevee sur les modeles a forte diffusion (ex: 208, Clio, Golf), ce qui suggere des ecarts forts d'annee, finition et kilometrage.
-
-### 5) Kilometrage et prix
-
-La relation negative prix-km est nette, mais non parfaite. A kilometrage equivalent, l'effet marque/modele/annee peut rester determinant.
-
-## Limites et qualite des donnees
-
-- Incoherence de casse sur certaines marques (`Bmw` vs `BMW`) qui peut biaiser certains classements.
-- Presence de valeurs extremement elevees sur le prix, a interpretrer avec prudence.
-- Le dataset evolue dans le temps, donc les conclusions peuvent changer a chaque nouvelle extraction.
-
-## Visualisations disponibles
-
-Le script genere:
-
-- `01_marques_plus_representees`
-- `02_modeles_plus_representes`
-- `03_modeles_par_marque_treemap`
-- `04_marques_plus_cheres`
-- `05_variance_prix_par_modele`
-- `06_distribution_km`
-- `07_prix_vs_km`
-- `08_distribution_prix`
-
-Sorties dans `marseille-cars/outputs/`:
-- `.html` interactif
-- `.png` image statique
-
-## Prerequis
+## 0) Setup
 
 ```bash
 python3 -m pip install -r requirements.txt
 ```
 
-## Execution
+## 1) Chargement des donnees
 
-Depuis la racine du projet:
+```python
+import pandas as pd
+
+df = pd.read_csv("marseille-cars/marseille-cars.csv")
+for col in ["annee", "km", "prix_eur"]:
+    df[col] = pd.to_numeric(df[col], errors="coerce")
+
+df = df.dropna(subset=["marque", "modele", "annee", "km", "prix_eur"])
+df = df[(df["prix_eur"] > 0) & (df["km"] >= 0)]
+```
+
+## 2) Apercu du dataset
+
+- Lignes: `2300`
+- Marques: `40`
+- Modeles: `617`
+- Prix moyen: `21 879 EUR`
+- Prix median: `18 390 EUR`
+- Km moyen: `70 283`
+- Km median: `57 056`
+- Correlation prix/km: `-0.345`
+
+Lecture rapide:
+- Marche fortement concentre sur des marques generalistes.
+- Presence d'un segment premium visible dans le haut de distribution.
+- Relation negative nette entre prix et kilometrage.
+
+## 3) Marques les plus representees
+
+![Marques les plus representees](outputs/01_marques_plus_representees.png)
+
+[Version interactive](outputs/01_marques_plus_representees.html)
+
+Notes:
+- Peugeot, Renault, Citroen et Volkswagen dominent en volume.
+- Le marche local est tire par des vehicules de grande diffusion.
+
+## 4) Modeles les plus representees
+
+![Modeles les plus representes](outputs/02_modeles_plus_representes.png)
+
+[Version interactive](outputs/02_modeles_plus_representes.html)
+
+Notes:
+- Top modele: 208, puis Clio et C3.
+- Forte presence de citadines et SUV compacts.
+
+## 5) Modeles par marque (treemap)
+
+![Modeles par marque](outputs/03_modeles_par_marque_treemap.png)
+
+[Version interactive](outputs/03_modeles_par_marque_treemap.html)
+
+Notes:
+- La profondeur de gamme varie selon les marques.
+- Certaines marques sont concentrees sur peu de modeles forts.
+
+## 6) Marques les plus cheres (prix moyen)
+
+![Marques les plus cheres](outputs/04_marques_plus_cheres.png)
+
+[Version interactive](outputs/04_marques_plus_cheres.html)
+
+Notes:
+- Porsche, Land Rover, Volvo, Cupra et Mercedes ressortent en tete.
+- Le classement est calcule avec un seuil minimal d'annonces pour limiter le bruit.
+
+## 7) Variance des prix par modele
+
+![Variance des prix par modele](outputs/05_variance_prix_par_modele.png)
+
+[Version interactive](outputs/05_variance_prix_par_modele.html)
+
+Notes:
+- Variance elevee sur les modeles tres representes.
+- Meme modele != meme niveau de prix (annee, finition, etat, km).
+
+## 8) Distribution du kilometrage
+
+![Distribution du kilometrage](outputs/06_distribution_km.png)
+
+[Version interactive](outputs/06_distribution_km.html)
+
+Notes:
+- Concentration importante entre ~20k et ~100k km.
+- Longue trainee sur les hauts kilometrages.
+
+## 9) Prix vs kilometrage
+
+![Prix vs kilometrage](outputs/07_prix_vs_km.png)
+
+[Version interactive](outputs/07_prix_vs_km.html)
+
+Notes:
+- Tendance globale decroissante: plus le km augmente, plus le prix baisse.
+- Dispersion restante due a la marque, au modele et a l'annee.
+
+## 10) Distribution des prix
+
+![Distribution des prix](outputs/08_distribution_prix.png)
+
+[Version interactive](outputs/08_distribution_prix.html)
+
+Notes:
+- Masse principale de l'offre dans les segments de prix intermediaires.
+- Queue haute visible sur les vehicules premium/luxe.
+
+## 11) Reproduire l'analyse
 
 ```bash
 python3 marseille-cars/analyze_marseille_cars.py \
-  --input marseille-cars.csv \
+  --input marseille-cars/marseille-cars.csv \
   --output-dir marseille-cars/outputs
 ```
 
-## Reutilisation pour d'autres datasets
+## 12) Limites data
 
-Ce dossier sert de template. Pour un CSV immobilier:
-
-1. Creer un dossier dedie (ex: `marseille-real-estate/`).
-2. Copier l'approche script + README + `outputs/`.
-3. Adapter les KPIs et les graphes au metier immobilier (prix/m2, surface, typologie, quartier, etc.).
+- Casse de marque parfois incoherente (`Bmw` vs `BMW`).
+- Quelques outliers de prix peuvent tirer la moyenne.
+- Snapshot temporel: les conclusions evoluent avec les nouvelles extractions.
