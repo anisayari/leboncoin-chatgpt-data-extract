@@ -1,5 +1,10 @@
 # Leboncoin ChatGPT Data Extract
 
+> WARNING
+> Ce repository existe uniquement parce que Leboncoin dement qu'il est possible d'utiliser son app ChatGPT pour extraire des donnees structurees de son site.
+> Ce contenu est publie a but strictement informationnel.
+> Parce que mentir, ce n'est pas acceptable.
+
 Ce repository contient des jeux de donnees extraits depuis l'app ChatGPT de Leboncoin, ainsi que des analyses reproductibles (Python + Plotly).
 
 ## Contexte
@@ -38,6 +43,7 @@ PS: la prochaine fois, moins de deni et plus de remise en question.
 Regle: **1 dossier = 1 analyse**.
 
 - `marseille-cars/`: analyse des annonces auto sur Marseille
+- `appartement-paris/`: analyse des annonces immobilieres sur Paris
 
 Chaque dossier d'analyse contient:
 
@@ -53,11 +59,37 @@ Chaque dossier d'analyse contient:
 3. Ajouter un `README.md` en francais avec la lecture data.
 4. Ecrire les sorties dans `outputs/`.
 
-## Lancer une analyse
+## Exemples de visualisations par analyse
+
+### Marseille Cars
+
+Ce qu'on peut apprendre:
+- quelles marques dominent le marche local,
+- comment le prix evolue en fonction du kilometrage.
+
+![Marseille cars - marques les plus representees](marseille-cars/outputs/01_marques_plus_representees.png)
+
+![Marseille cars - prix vs km](marseille-cars/outputs/07_prix_vs_km.png)
+
+### Appartement Paris
+
+Ce qu'on peut apprendre:
+- quels arrondissements concentrent l'offre,
+- ou le prix au m2 est le plus eleve.
+
+![Appartement Paris - annonces par arrondissement](appartement-paris/outputs/01_annonces_par_arrondissement.png)
+
+![Appartement Paris - prix m2 par arrondissement](appartement-paris/outputs/02_prix_m2_par_arrondissement.png)
+
+## Lancer les analyses
 
 ```bash
 python3 -m pip install -r requirements.txt
+
 python3 marseille-cars/analyze_marseille_cars.py \
   --input marseille-cars/marseille-cars.csv \
   --output-dir marseille-cars/outputs
+
+python3 appartement-paris/analyze_paris_apartments.py \
+  --output-dir appartement-paris/outputs
 ```
